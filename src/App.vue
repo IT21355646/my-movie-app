@@ -3,8 +3,9 @@
     <AppHeader />
     <AppHero />
     <AppIntroduction />
-    <AppMovieGrid /> <main>
-      </main>
+    <AppMovieGrid />
+    <AppContactUs />
+    <AppFooter />
   </div>
 </template>
 
@@ -12,7 +13,9 @@
 import AppHeader from './components/Header.vue';
 import AppHero from './components/Hero.vue';
 import AppIntroduction from './components/Introduction.vue';
-import AppMovieGrid from './components/MovieGrid.vue'; // Import the new component
+import AppMovieGrid from './components/MovieGrid.vue';
+import AppContactUs from './components/ContactUs.vue';
+import AppFooter from './components/AppFooter.vue';
 
 export default {
   name: 'App',
@@ -20,7 +23,9 @@ export default {
     AppHeader,
     AppHero,
     AppIntroduction,
-    AppMovieGrid, // Register the component
+    AppMovieGrid,
+    AppContactUs,
+    AppFooter, // Ensure this is the last component and does not have a trailing comma if no other components follow
   },
 };
 </script>
