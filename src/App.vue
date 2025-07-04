@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <AppHeader />
+    <AppHero />
     <main>
       </main>
   </div>
@@ -8,11 +9,13 @@
 
 <script>
 import AppHeader from './components/Header.vue';
+import AppHero from './components/Hero.vue'; // Import the new Hero component
 
 export default {
   name: 'App',
   components: {
     AppHeader,
+    AppHero, // Register the Hero component
   },
 };
 </script>
