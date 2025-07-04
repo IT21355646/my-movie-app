@@ -3,53 +3,135 @@
     <h2 class="section-title">Collect your favourites</h2>
 
     <div class="search-bar">
-      <input type="text" placeholder="Q Search title and add to grid" class="search-input" />
+      <input
+        type="text"
+        v-model="searchQuery"
+        @input="searchMovies"
+        placeholder="Q Search title and add to grid"
+        class="search-input"
+      />
     </div>
 
     <div class="movie-list">
-      <div class="movie-item">
-        <button class="close-button" @click="removeMovie(1)">X</button>
-        <img src="../assets/Images/Batman.jpg" alt="Batman Returns Poster" class="movie-poster" />
-        <h3 class="movie-title">Batman Returns</h3>
+      <div
+        v-for="movie in movies"
+        :key="movie.id"
+        class="movie-item"
+      >
+        <button class="close-button" @click="removeMovie(movie.id)">X</button>
+        <img
+          :src="getMoviePosterUrl(movie.poster_path)"
+          :alt="movie.title + ' Poster'"
+          class="movie-poster"
+        />
+        <h3 class="movie-title">{{ movie.title }}</h3>
         <p class="movie-description">
-          Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut.....
+          {{ movie.overview || 'No description available.' }}
         </p>
       </div>
-
-      <div class="movie-item">
-        <button class="close-button" @click="removeMovie(2)">X</button>
-        <img src="../assets/Images/Wild West.jpg" alt="Wild Wild West Poster" class="movie-poster" />
-        <h3 class="movie-title">Wild Wild West</h3>
-        <p class="movie-description">
-          Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut.....
-        </p>
-      </div>
-
-      <div class="movie-item">
-        <button class="close-button" @click="removeMovie(3)">X</button>
-        <img src="../assets/Images/Spiderman.jpg" alt="The Amazing Spiderman Poster" class="movie-poster" />
-        <h3 class="movie-title">The Amazing Spiderman</h3>
-        <p class="movie-description">
-          Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut.....
-        </p>
-      </div>
+      <p v-if="movies.length === 0 && !loading" class="no-movies-message">
+        No movies to display. Try searching for some!
+      </p>
+      <p v-if="loading" class="loading-message">Loading movies...</p>
+      <p v-if="error" class="error-message">{{ error }}</p>
     </div>
   </section>
 </template>
 
 <script>
+import { ref, onMounted } from 'vue';
+
 export default {
   name: 'AppMovieGrid',
-  methods: {
-    removeMovie(id) {
-      console.log(`Movie with ID ${id} removed (placeholder for future functionality).`);
-      // This will be implemented fully when we have dynamic movie data
-    },
+  setup() {
+    const movies = ref([]);
+    const searchQuery = ref('');
+    const loading = ref(false);
+    const error = ref(null);
+
+    // !! IMPORTANT: Replace 'YOUR_API_KEY' with your actual TMDb API key !!
+    const API_KEY = '5019f2f7d1451fe858585b1af68d2ac0';
+    const BASE_URL = 'https://api.themoviedb.org/3';
+    const IMAGE_BASE_URL = 'https://image.tmdb.org/t/p/w500'; // Common poster size
+
+    const fetchInitialMovies = async () => {
+      loading.value = true;
+      error.value = null;
+      try {
+        // Using a common endpoint for popular movies
+        const response = await fetch(`${BASE_URL}/movie/popular?api_key=${API_KEY}&language=en-US&page=1`);
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const data = await response.json();
+        // Take the first 3 movies as initial
+        movies.value = data.results.slice(0, 3);
+      } catch (e) {
+        error.value = `Failed to fetch initial movies: ${e.message}. Please check your API key and network connection.`;
+        console.error('Error fetching initial movies:', e);
+      } finally {
+        loading.value = false;
+      }
+    };
+
+    const searchMovies = async () => {
+      if (searchQuery.value.length < 3) { // Only search if query is at least 3 characters
+        // Clear search results if query is too short, but keep existing movies
+        return;
+      }
+
+      loading.value = true;
+      error.value = null;
+      try {
+        const response = await fetch(`${BASE_URL}/search/movie?api_key=${API_KEY}&language=en-US&query=${encodeURIComponent(searchQuery.value)}&page=1`);
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const data = await response.json();
+        // To add movies to the grid while keeping existing movies, we'll merge them.
+        // Filter out duplicates based on movie ID before adding.
+        const newMovies = data.results.filter(
+          (newMovie) => !movies.value.some((existingMovie) => existingMovie.id === newMovie.id)
+        ).slice(0, 3); // Add up to 3 new movies from search
+
+        // Concatenate new movies to the existing list
+        movies.value = [...movies.value, ...newMovies];
+
+      } catch (e) {
+        error.value = `Failed to search movies: ${e.message}.`;
+        console.error('Error searching movies:', e);
+      } finally {
+        loading.value = false;
+      }
+    };
+
+
+    const removeMovie = (id) => {
+      movies.value = movies.value.filter((movie) => movie.id !== id);
+    };
+
+    const getMoviePosterUrl = (posterPath) => {
+      return posterPath ? `${IMAGE_BASE_URL}${posterPath}` : 'https://via.placeholder.com/150x225/202020/FFFFFF?text=No+Image';
+    };
+
+    onMounted(fetchInitialMovies); // Fetch movies when the component is mounted
+
+    return {
+      movies,
+      searchQuery,
+      loading,
+      error,
+      removeMovie,
+      searchMovies,
+      getMoviePosterUrl,
+    };
   },
 };
 </script>
 
 <style scoped>
+/* ... (Your existing CSS for .movie-grid-section, .section-title, .search-bar, .search-input, .movie-list, .movie-item, etc.) ... */
+
 .movie-grid-section {
   padding: 60px 20px;
   max-width: 1200px; /* Adjust max width as per design */
@@ -152,6 +234,17 @@ export default {
 .close-button:hover {
   background-color: #e0b000;
 }
+
+.no-movies-message, .loading-message, .error-message {
+  color: #fff;
+  font-size: 1.2em;
+  margin-top: 30px;
+}
+
+.error-message {
+    color: #ff6b6b; /* Red color for error messages */
+}
+
 
 /* Responsive adjustments for Movie Grid */
 @media (max-width: 992px) { /* Tablet breakpoint - show 2 movies per row */
