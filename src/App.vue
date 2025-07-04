@@ -2,20 +2,22 @@
   <div id="app">
     <AppHeader />
     <AppHero />
-    <main>
+    <AppIntroduction /> <main>
       </main>
   </div>
 </template>
 
 <script>
 import AppHeader from './components/Header.vue';
-import AppHero from './components/Hero.vue'; // Import the new Hero component
+import AppHero from './components/Hero.vue';
+import AppIntroduction from './components/Introduction.vue'; // Import the new component
 
 export default {
   name: 'App',
   components: {
     AppHeader,
-    AppHero, // Register the Hero component
+    AppHero,
+    AppIntroduction, // Register the component
   },
 };
 </script>
