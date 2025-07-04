@@ -2,7 +2,8 @@
   <div id="app">
     <AppHeader />
     <AppHero />
-    <AppIntroduction /> <main>
+    <AppIntroduction />
+    <AppMovieGrid /> <main>
       </main>
   </div>
 </template>
@@ -10,14 +11,16 @@
 <script>
 import AppHeader from './components/Header.vue';
 import AppHero from './components/Hero.vue';
-import AppIntroduction from './components/Introduction.vue'; // Import the new component
+import AppIntroduction from './components/Introduction.vue';
+import AppMovieGrid from './components/MovieGrid.vue'; // Import the new component
 
 export default {
   name: 'App',
   components: {
     AppHeader,
     AppHero,
-    AppIntroduction, // Register the component
+    AppIntroduction,
+    AppMovieGrid, // Register the component
   },
 };
 </script>
