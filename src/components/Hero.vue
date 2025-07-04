@@ -22,37 +22,16 @@ export default {
   height: auto; /* Maintain aspect ratio */
   display: block; /* Remove extra space below image */
   object-fit: cover; /* Crop image to cover the container */
-  min-height: 300px; /* Minimum height for smaller screens, adjust as needed */
-  max-height: 700px; /* Maximum height for larger screens, adjust as needed */
+  object-position: bottom; 
+  min-height: 300px; /* Reduced minimum height */
+  max-height: 500px; /* Reduced maximum height */
 }
-
-/* Example for content overlay if needed later */
-/*
-.hero-content {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  text-align: center;
-  color: #fff;
-  z-index: 10;
-}
-
-.hero-content h1 {
-  font-size: 3em;
-  margin-bottom: 10px;
-}
-
-.hero-content p {
-  font-size: 1.2em;
-}
-*/
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .hero-image {
-    min-height: 250px;
-    max-height: 500px;
+    min-height: 180px;
+    max-height: 350px;
   }
   /*
   .hero-content h1 {
@@ -66,8 +45,8 @@ export default {
 
 @media (max-width: 480px) {
   .hero-image {
-    min-height: 200px;
-    max-height: 400px;
+    min-height: 150px;
+    max-height: 250px;
   }
 }
 </style>
