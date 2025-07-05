@@ -3,13 +3,16 @@
     <div class="header-row">
       <h2 class="section-title">Collect your favourites</h2>
       <div class="search-bar">
-        <input
-          type="text"
-          v-model="searchQuery"
-          @input="searchMovies"
-          placeholder="Q Search title and add to grid"
-          class="search-input"
-        />
+        <div class="search-input-container">
+          <img src="../assets/Icons/Search White.svg" alt="Search" class="search-icon" />
+          <input
+            type="text"
+            v-model="searchQuery"
+            @input="searchMovies"
+            placeholder="Search title and add to grid"
+            class="search-input"
+          />
+        </div>
       </div>
     </div>
 
@@ -19,7 +22,9 @@
         :key="movie.id"
         class="movie-item"
       >
-        <button class="close-button" @click="removeMovie(movie.id)">X</button>
+        <button class="close-button" @click="removeMovie(movie.id)">
+          <img src="../assets/Icons/Close Grey.svg" alt="Close" class="close-icon" />
+        </button>
         <img
           :src="getMoviePosterUrl(movie.poster_path)"
           :alt="movie.title + ' Poster'"
@@ -153,7 +158,18 @@ export default {
   justify-content: space-between;
   align-items: center;
   margin-bottom: 40px;
-  padding: 0 80px; /* Changed from 0 20px */
+  padding: 0 80px 20px 80px;
+  position: relative;
+}
+
+.header-row::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 80px;
+  right: 80px;
+  height: 1px;
+  background-color: #ffffff;
 }
 
 .section-title {
@@ -165,17 +181,33 @@ export default {
 }
 
 .search-bar {
-  margin: 0;
+  margin: 0 70px 0 0; /* Added right margin */
   padding: 0;
+}
+
+.search-input-container {
+  position: relative;
+  width: 100%;
+  max-width: 350px;
+}
+
+.search-icon {
+  position: absolute;
+  left: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 18px;
+  height: 18px;
+  pointer-events: none;
+  z-index: 1;
 }
 
 .search-input {
   width: 100%;
-  max-width: 400px; /* Adjust width as per design */
-  padding: 12px 20px;
-  border: 1px solid #F0C000; /* Border color from your design */
+  padding: 12px 20px 12px 45px; /* Added left padding for icon */
+  border: 1px solid #ffffff;
   border-radius: 5px;
-  background-color: #222; /* Dark background for input */
+  background-color: #222;
   color: #fff;
   font-size: 1.1em;
   outline: none;
@@ -194,8 +226,7 @@ export default {
 }
 
 .movie-item {
-  background-color: #1a1a1a; /* Darker background for movie cards */
-  border-radius: 8px;
+  background-color: #3c3c3c; /* Darker background for movie cards */
   overflow: hidden;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   position: relative;
@@ -205,7 +236,7 @@ export default {
 
 .movie-poster {
   width: 100%;
-  height: 300px; /* Fixed height for posters, adjust as needed */
+  height: 600px; /* Increased from 300px */
   object-fit: cover; /* Ensures images fill the space */
   display: block;
   border-bottom: 1px solid #333; /* Separator */
@@ -213,16 +244,15 @@ export default {
 
 .movie-title {
   font-size: 1.5em;
-  color: #F0C000; /* Title color */
   margin: 15px 15px 5px 15px; /* Spacing */
 }
 
 .movie-description {
-  font-size: 0.95em;
+  font-size: 1.0em;
   color: #ccc;
   margin: 0 15px 15px 15px;
   line-height: 1.5;
-  min-height: 70px; /* Ensure consistent height for description */
+  min-height: 90px; /* Increased from 70px */
   display: -webkit-box;
   -webkit-line-clamp: 4; /* Limit to 4 lines */
   -webkit-box-orient: vertical;
@@ -234,21 +264,28 @@ export default {
   position: absolute;
   top: 10px;
   right: 10px;
-  background-color: #F0C000;
+  background-color: rgba(26, 26, 28, 0.8);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   color: #000;
   border: none;
-  border-radius: 50%;
-  width: 25px;
-  height: 25px;
+  border-radius: 0 !important;
+  width: 50px;
+  height: 50px;
   font-size: 1em;
   font-weight: bold;
   cursor: pointer;
   display: flex;
   justify-content: center;
   align-items: center;
-  line-height: 1; /* Adjust for vertical alignment */
+  line-height: 1;
   z-index: 5;
   transition: background-color 0.3s ease;
+}
+
+.close-icon {
+  width: 12px;
+  height: 12px;
 }
 
 .close-button:hover {
@@ -278,7 +315,14 @@ export default {
     font-size: 2.2em;
   }
   .header-row {
-    padding: 0 60px; /* Reduced from 80px for tablets */
+    padding: 0 60px 20px 60px; /* Added bottom padding for tablets */
+  }
+  .header-row::after {
+    left: 60px;
+    right: 60px;
+  }
+  .search-bar {
+    margin: 0 15px 0 0; /* Reduced margin for tablets */
   }
 }
 
@@ -299,10 +343,16 @@ export default {
     flex-direction: column;
     align-items: flex-start;
     gap: 20px;
-    padding: 0 40px; /* Reduced from 80px for mobile */
+    padding: 0 40px 20px 40px; /* Added bottom padding for mobile */
+    border-bottom: 1px solid #ffffff;
+  }
+  .header-row::after {
+    left: 40px;
+    right: 40px;
   }
   .search-bar {
     width: 100%;
+    margin: 0; /* Remove margin on mobile since it stacks */
   }
 }
 
@@ -317,7 +367,7 @@ export default {
     margin: 0 auto;
   }
   .movie-poster {
-    height: 250px;
+    height: 320px; /* Increased from 250px */
   }
   .section-title {
     font-size: 1.8em;
@@ -326,7 +376,11 @@ export default {
     max-width: 100%;
   }
   .header-row {
-    padding: 0 20px; /* Reduced from 80px for small mobile */
+    padding: 0 20px 20px 20px; /* Added bottom padding for small mobile */
+  }
+  .header-row::after {
+    left: 20px;
+    right: 20px;
   }
 }
 </style>
