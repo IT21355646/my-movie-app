@@ -122,7 +122,7 @@ export default {
     flex-direction: column;
     text-align: center;
     padding: 0 80px;
-    gap: 20px;
+    gap: 1px;
   }
 
   .footer-section {
@@ -145,6 +145,7 @@ export default {
   
   .footer-content-wrapper {
     padding: 0 40px;
+    gap: 1px;
   }
   
   .footer-section p {
