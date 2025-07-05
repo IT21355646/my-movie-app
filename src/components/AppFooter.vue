@@ -2,20 +2,11 @@
   <footer class="app-footer">
     <div class="footer-content-wrapper">
       <div class="footer-section copyright">
-        <p>&copy; 2022 Amadeus Hotels. All rights reserved.</p>
-      </div>
-
-      <div class="footer-section social-media">
-        <h3>Follow us on</h3>
-        <div class="social-icons">
-          <a href="#" class="social-icon" aria-label="Facebook"><i class="fab fa-facebook-f">F</i></a>
-          <a href="#" class="social-icon" aria-label="Twitter"><i class="fab fa-twitter">T</i></a>
-          <a href="#" class="social-icon" aria-label="Instagram"><i class="fab fa-instagram">I</i></a>
-        </div>
+        <p>Copyight &copy; 2022 Amadeus Hotels. All rights reserved.</p>
       </div>
 
       <div class="footer-section attribution">
-        <p>Photos by Felix Maaneeram & Serge Kutuzov on Unsplash</p>
+        <p>Photos by <a href="#" class="photo-link">Felix Maaneeram</a> & <a href="#" class="photo-link">Serge Kutuzov</a> on <a href="https://unsplash.com" class="photo-link">Unsplash</a></p>
       </div>
     </div>
   </footer>
@@ -29,13 +20,16 @@ export default {
 
 <style scoped>
 .app-footer {
-  background-color: #0d0d0d; /* Darker background for footer */
-  color: #ccc;
-  padding: 40px 20px;
+  background-color: #1a1a1a;
+  color: #b4b4b4;
+  padding: 10px 10px;
   text-align: center;
-  font-size: 0.9em;
-  border-top: 1px solid #222; /* Small separator from content above */
-  width: 100%;
+  font-size: 1.0em;
+  border-top: 1px solid #413d3d; /* Small separator from content above */
+  width: 100vw;
+  max-width: none;
+  margin-left: calc(-50vw + 50%);
+  box-sizing: border-box;
 }
 
 .footer-content-wrapper {
@@ -44,14 +38,17 @@ export default {
   justify-content: space-between;
   align-items: center;
   width: 100%;
+  max-width: none;
   margin: 0 auto;
-  padding: 0 80px;
+  padding: 0 60px;
+  box-sizing: border-box;
 }
 
 .footer-section {
-  padding: 10px;
-  flex-basis: 30%; /* Roughly distribute space */
-  min-width: 250px; /* Minimum width before stacking */
+  padding: 2px;
+  flex-basis: 45%; /* Increase basis to give more space */
+  min-width: 200px; /* Reduce minimum width */
+  white-space: nowrap; /* Prevent text wrapping */
 }
 
 .footer-section.copyright {
@@ -99,22 +96,32 @@ export default {
   border-color: #F0C000;
 }
 
+.photo-link {
+  color: #b4b4b4;
+  text-decoration: underline;
+}
+
+.photo-link:hover {
+  color: #F0C000;
+  text-decoration: underline;
+}
+
 /* Responsive adjustments */
 @media (max-width: 992px) {
   .footer-content-wrapper {
-    padding: 0 60px;
+    padding: 0 120px;
   }
 }
 
 @media (max-width: 768px) {
   .app-footer {
-    padding: 40px 0;
+    padding: 20px 0;
   }
   
   .footer-content-wrapper {
     flex-direction: column;
     text-align: center;
-    padding: 0 40px;
+    padding: 0 80px;
     gap: 20px;
   }
 
@@ -123,6 +130,7 @@ export default {
     text-align: center !important;
     margin-bottom: 0;
     min-width: auto;
+    white-space: normal; /* Allow wrapping on mobile */
   }
   
   .social-icons {
@@ -132,15 +140,15 @@ export default {
 
 @media (max-width: 480px) {
   .app-footer {
-    padding: 30px 0;
+    padding: 15px 0;
   }
   
   .footer-content-wrapper {
-    padding: 0 20px;
+    padding: 0 40px;
   }
   
   .footer-section p {
-    font-size: 0.85em;
+    font-size: 1.1em;
     line-height: 1.4;
   }
   
