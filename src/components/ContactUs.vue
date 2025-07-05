@@ -514,14 +514,14 @@ export default {
   background-color: #e0b000;
 }
 
-/* Responsive adjustments */
+/* Enhanced Responsive adjustments */
 @media (max-width: 992px) {
   .contact-section {
-    padding: 60px 60px;
+    padding: 50px 40px;
   }
   
   .contact-content-wrapper {
-    gap: 60px; /* Reduced gap for tablets */
+    gap: 50px;
   }
   
   .contact-form-container,
@@ -530,22 +530,26 @@ export default {
   }
 
   .address-info {
-    padding: 30px 60px;
+    padding: 25px 40px;
+  }
+
+  .section-title {
+    font-size: 2.2em;
   }
 }
 
 @media (max-width: 768px) {
   .contact-section {
-    padding: 40px 40px;
+    padding: 40px 25px;
   }
   
   .contact-content-wrapper {
     flex-direction: column;
     align-items: center;
-    gap: 50px; /* Reduced gap for mobile */
+    gap: 40px;
   }
 
-  .contact-form_container,
+  .contact-form-container,
   .map-and-info-container {
     width: 100%;
     max-width: 100%;
@@ -554,72 +558,248 @@ export default {
   .form-group {
     width: 100%;
     margin-right: 0;
-    margin-bottom: 20px;
+    margin-bottom: 18px;
   }
   
   .section-title {
     font-size: 2em;
+    text-align: left;
   }
   
   .intro-text {
     font-size: 1em;
+    text-align: left;
+    margin-bottom: 35px;
   }
 
   .address-info {
-    padding: 30px 40px;
+    padding: 25px 25px;
   }
 
   .address-content {
     flex-direction: column;
-    align-items: flex-start;
-    gap: 15px;
+    align-items: center;
+    gap: 20px;
+    text-align: center;
   }
 
   .address-right {
-    align-self: flex-start;
+    align-self: center;
+    width: 100%;
+    justify-content: center;
   }
-  
-  .address-info h3 {
+
+  .follow-text {
     margin-bottom: 10px;
   }
-  
-  .address-info p {
-    margin-bottom: 5px;
+
+  /* Enhanced form inputs for mobile */
+  .form-group input[type="text"],
+  .form-group input[type="email"],
+  .form-group input[type="tel"],
+  .form-group textarea {
+    padding: 15px;
+    font-size: 16px; /* Prevents zoom on iOS */
+    border-radius: 8px;
+  }
+
+  .submit-button {
+    padding: 15px 30px;
+    font-size: 1.1em;
+    width: auto;
+    max-width: 200px;
+    margin: 10px auto 0 auto;
+  }
+
+  /* Enhanced checkbox for mobile */
+  .checkbox-group input[type="checkbox"] {
+    width: 24px;
+    height: 24px;
+    margin-right: 12px;
+  }
+
+  .checkbox-group label {
+    font-size: 1em;
+    line-height: 1.4;
+  }
+
+  /* Enhanced modal for tablets */
+  .modal-content {
+    width: 95%;
+    max-height: 90vh;
+  }
+
+  .modal-header {
+    padding: 15px 20px;
+  }
+
+  .modal-body {
+    padding: 20px;
+  }
+
+  .modal-footer {
+    padding: 15px 20px;
   }
 }
 
 @media (max-width: 480px) {
   .contact-section {
-    padding: 30px 20px;
+    padding: 30px 15px;
   }
   
   .section-title {
     font-size: 1.8em;
+    margin-bottom: 10px;
   }
   
   .intro-text {
-    font-size: 0.9em;
+    font-size: 0.95em;
     margin-bottom: 30px;
+    padding: 0;
   }
   
-  .contact-form-container,
-  .map-and-info-container {
-    padding: 20px;
+  .contact-form-container {
+    padding: 0;
+  }
+  
+  .form-group input[type="text"],
+  .form-group input[type="email"],
+  .form-group input[type="tel"],
+  .form-group textarea {
+    padding: 16px;
+    font-size: 16px;
+    border-radius: 6px;
+  }
+
+  .form-group textarea {
+    min-height: 120px;
   }
   
   .submit-button {
-    padding: 12px 20px;
+    padding: 16px 20px;
     font-size: 1em;
-    width: 100%;
-    max-width: 200px;
+    width: auto;
+    max-width: 180px;
+    margin: 15px auto 0 auto;
   }
   
   .map-placeholder iframe {
-    height: 400px; /* Increased from 300px */
+    height: 350px;
+    border-radius: 6px;
   }
 
   .address-info {
-    padding: 30px 20px;
+    padding: 25px 15px;
+  }
+
+  .address-info h3 {
+    font-size: 1.1em;
+    margin-bottom: 12px;
+  }
+
+  .address-info p {
+    font-size: 0.95em;
+    margin-bottom: 6px;
+  }
+
+  .social-icons {
+    gap: 15px;
+    margin-top: 5px;
+  }
+
+  .social-icon {
+    width: 28px;
+    height: 28px;
+  }
+
+  /* Enhanced modal for mobile */
+  .modal-content {
+    width: 98%;
+    max-height: 95vh;
+    margin: 10px;
+  }
+
+  .modal-header {
+    padding: 15px;
+  }
+
+  .modal-header h2 {
+    font-size: 1.3em;
+  }
+
+  .modal-close {
+    font-size: 1.8em;
+  }
+
+  .modal-body {
+    padding: 15px;
+    max-height: 70vh;
+  }
+
+  .modal-body h3 {
+    font-size: 1.1em;
+    margin-top: 15px;
+  }
+
+  .modal-footer {
+    padding: 15px;
+  }
+
+  .modal-btn {
+    padding: 12px 24px;
+    width: 100%;
+  }
+}
+
+/* Extra small devices */
+@media (max-width: 360px) {
+  .contact-section {
+    padding: 25px 10px;
+  }
+
+  .section-title {
+    font-size: 1.6em;
+  }
+
+  .intro-text {
+    font-size: 0.9em;
+    padding: 0;
+  }
+
+  .form-group input[type="text"],
+  .form-group input[type="email"],
+  .form-group input[type="tel"],
+  .form-group textarea {
+    padding: 14px;
+  }
+
+  .map-placeholder iframe {
+    height: 300px;
+  }
+
+  .address-info {
+    padding: 20px 10px;
+  }
+}
+
+/* Touch device optimizations */
+@media (hover: none) and (pointer: coarse) {
+  .submit-button {
+    min-height: 48px; /* Better touch target */
+  }
+
+  .checkbox-group input[type="checkbox"] {
+    min-width: 28px;
+    min-height: 28px;
+  }
+
+  .terms-link {
+    padding: 2px 0; /* Better touch target */
+  }
+
+  .social-icon {
+    min-width: 32px;
+    min-height: 32px;
   }
 }
 </style>
