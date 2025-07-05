@@ -131,11 +131,20 @@ export default {
 
 <style scoped>
 .movie-grid-section {
-  padding: 60px 20px;
-  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 60px 0;
+  width: 100vw; /* Full viewport width */
+  min-height: 100vh; /* Full viewport height */
   margin: 0;
-  text-align: center; /* For centering the title and search bar */
-  background-color: #1d1d1d; /* Grey background */
+  box-sizing: border-box;
+  text-align: center;
+  background-color: #1d1d1d;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
 }
 
 .section-title {
@@ -147,6 +156,7 @@ export default {
 
 .search-bar {
   margin-bottom: 40px; /* Spacing below search bar */
+  padding: 0 20px; /* Add padding only to search bar */
 }
 
 .search-input {
@@ -170,6 +180,7 @@ export default {
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Flexible columns */
   gap: 30px; /* Spacing between movie items */
   justify-content: center;
+  padding: 0 20px; /* Add padding only to movie list */
 }
 
 .movie-item {
@@ -251,23 +262,31 @@ export default {
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Adjust for 2 columns */
     max-width: none;
     margin: 0 auto;
+    padding: 0 15px; /* Reduce padding on smaller screens */
   }
   .section-title {
     font-size: 2.2em;
+  }
+  .search-bar {
+    padding: 0 15px;
   }
 }
 
 @media (max-width: 768px) { /* Even smaller tablet/large mobile */
   .movie-grid-section {
-    padding: 40px 15px;
+    padding: 40px 0; /* Remove horizontal padding */
   }
   .movie-list {
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); /* Adjust for potentially 2 smaller columns */
     max-width: none;
     margin: 0 auto;
+    padding: 0 10px; /* Minimal padding */
   }
   .section-title {
     font-size: 2em;
+  }
+  .search-bar {
+    padding: 0 10px;
   }
 }
 
@@ -276,6 +295,7 @@ export default {
     grid-template-columns: 1fr; /* Single column */
     max-width: none;
     margin: 0 auto;
+    padding: 0 10px;
   }
   .movie-item {
     margin: 0 auto; /* Center single item */
@@ -289,6 +309,9 @@ export default {
   }
   .search-input {
     max-width: 90%;
+  }
+  .search-bar {
+    padding: 0 10px;
   }
 }
 </style>

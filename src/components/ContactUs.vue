@@ -101,9 +101,17 @@ export default {
 
 <style scoped>
 .contact-section {
+  display: flex;
+  flex-direction: column;
   padding: 60px 20px;
-  width: 100%;
+  width: 100vw;
   margin: 0;
+  box-sizing: border-box;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
   text-align: center;
   color: #fff;
 }

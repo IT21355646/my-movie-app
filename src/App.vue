@@ -37,6 +37,7 @@ body {
   font-family: Arial, sans-serif; /* Example font */
   background-color: #121212; /* Dark background for the whole app */
   color: #fff;
+  display: flex;
 }
 
 #app {
