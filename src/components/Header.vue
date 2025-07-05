@@ -3,25 +3,34 @@
     <div class="logo">
       <img src="../assets/Logos/Logo White.svg" alt="Movie App Logo" />
     </div>
-    <nav class="main-nav">
-      <ul>
-        <li><a href="#">HOME</a></li>
-        <li><a href="#">OUR SCREENS</a></li>
-        <li><a href="#">SCHEDULE</a></li>
-        <li><a href="#">MOVIE LIBRARY</a></li>
-        <li><a href="#">LOCATION & CONTACT</a></li>
-      </ul>
-    </nav>
+    <div class="nav-container">
+      <nav class="main-nav">
+        <ul>
+          <li><a href="#">HOME</a></li>
+          <li><a href="#">OUR SCREENS</a></li>
+          <li><a href="#">SCHEDULE</a></li>
+          <li><a href="#">MOVIE LIBRARY</a></li>
+          <li><a href="#">LOCATION & CONTACT</a></li>
+        </ul>
+      </nav>
+      <button class="hamburger-menu-icon" :class="{ 'active': isMobileMenuOpen }" @click="toggleMobileMenu">
+        <img :src="menuIconSrc" alt="Menu" @error="handleImageError" />
+      </button>
+    </div>
+    <div class="hamburger-backdrop" :class="{ 'active': isMobileMenuOpen }" @click="toggleMobileMenu"></div>
     <nav class="hamburger-nav" :class="{ 'mobile-open': isMobileMenuOpen }">
       <ul>
-        <li><a href="#">GALLERY</a></li>
+        <!-- Desktop: Only GALLERY -->
+        <li class="desktop-only"><a href="#">GALLERY</a></li>
+        <!-- Mobile: All items when screen is small -->
+        <li class="mobile-item"><a href="#">HOME</a></li>
+        <li class="mobile-item"><a href="#">OUR SCREENS</a></li>
+        <li class="mobile-item"><a href="#">SCHEDULE</a></li>
+        <li class="mobile-item"><a href="#">MOVIE LIBRARY</a></li>
+        <li class="mobile-item"><a href="#">LOCATION & CONTACT</a></li>
+        <li class="mobile-item"><a href="#">GALLERY</a></li>
       </ul>
     </nav>
-    <button class="hamburger-menu-icon" :class="{ 'active': isMobileMenuOpen }" @click="toggleMobileMenu">
-      <span class="bar"></span>
-      <span class="bar"></span>
-      <span class="bar"></span>
-    </button>
   </header>
 </template>
 
@@ -32,6 +41,13 @@ export default {
     return {
       isMobileMenuOpen: false,
     };
+  },
+  computed: {
+    menuIconSrc() {
+      return this.isMobileMenuOpen 
+        ? new URL('../assets/Icons/Close White.svg', import.meta.url).href
+        : new URL('../assets/Icons/Menu White.svg', import.meta.url).href;
+    }
   },
   mounted() {
     // Add event listener to close mobile menu on resize to desktop size
@@ -53,6 +69,9 @@ export default {
         this.isMobileMenuOpen = false;
         document.body.style.overflow = ''; // Re-enable scrolling
       }
+    },
+    handleImageError(event) {
+      console.error('Image failed to load:', event.target.src);
     }
   }
 };
@@ -63,10 +82,10 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 0 5px 0;
+  padding: 8px 0;
   background-color: #000;
   color: #fff;
-  min-height: 60px;
+  min-height: 56px;
   position: sticky;
   top: 0;
   z-index: 1000;
@@ -77,13 +96,21 @@ export default {
 }
 
 .logo img {
-  height: 40px;
-  margin-left: 80px; /* Match other components' padding */
+  height: 36px;
+  margin-left: 20px;
+  transition: height 0.3s ease;
+}
+
+/* Navigation Container */
+.nav-container {
+  display: flex;
+  align-items: center;
+  margin-right: 20px;
 }
 
 /* Desktop Navigation (default) */
 .main-nav {
-  margin-right: 80px; /* Match other components' padding */
+  margin-right: 15px;
 }
 
 .main-nav ul {
@@ -94,17 +121,17 @@ export default {
 }
 
 .main-nav li {
-  margin-left: 30px; /* Spacing between menu items */
+  margin-left: 20px;
 }
 
 .main-nav a {
   color: #fff;
   text-decoration: none;
   font-weight: normal;
-  font-size: 14px;
-  padding: 5px 0;
+  font-size: 13px;
+  padding: 8px 0;
   display: block;
-  transition: text-decoration 0.3s ease; /* For hover effect */
+  transition: text-decoration 0.3s ease;
   border-bottom: 2px solid transparent;
 }
 
@@ -116,46 +143,64 @@ export default {
 /* Hamburger Menu Icon */
 .hamburger-menu-icon {
   display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  width: 30px;
-  height: 25px;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
   background: transparent;
   border: none;
+  outline: none;
   cursor: pointer;
-  padding: 0;
+  padding: 10px;
   z-index: 1001;
-  margin-right: 80px; /* Match other components' padding */
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
 }
 
-.hamburger-menu-icon .bar {
-  width: 100%;
-  height: 3px;
-  background-color: #fff;
-  border-radius: 5px;
+.hamburger-menu-icon:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.hamburger-menu-icon img {
+  width: 20px;
+  height: 20px;
   transition: all 0.3s ease-in-out;
 }
 
-/* Styles for animating hamburger icon into an 'X' */
-.hamburger-menu-icon.active .bar:nth-child(1) {
-  transform: translateY(11px) rotate(45deg);
-}
-.hamburger-menu-icon.active .bar:nth-child(2) {
-  opacity: 0;
-}
-.hamburger-menu-icon.active .bar:nth-child(3) {
-  transform: translateY(-11px) rotate(-45deg);
+.hamburger-menu-icon.active img {
+  opacity: 0.9;
+  transform: scale(1.1);
 }
 
-/* Hamburger Navigation (hidden by default, shown when toggled) */
+/* Hamburger Backdrop */
+.hamburger-backdrop {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(2px);
+  z-index: 998;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.hamburger-backdrop.active {
+  display: block;
+  opacity: 1;
+}
+
+/* Hamburger Navigation */
 .hamburger-nav {
   display: none;
-  position: fixed; /* Changed back to fixed for better positioning */
-  top: 71px; /* Below the header */
+  position: fixed;
+  top: 56px;
   right: 0;
-  width: 300px; /* Increased width */
-  max-width: calc(100vw - 20px); /* Ensure it doesn't exceed viewport */
-  height: calc(100vh - 71px); /* Full height minus header */
+  width: 320px;
+  max-width: calc(100vw - 20px);
+  height: calc(100vh - 56px);
   background-color: #000;
   border-left: 1px solid #252424;
   z-index: 999;
@@ -163,6 +208,7 @@ export default {
   transform: translateX(100%);
   transition: all 0.3s ease-in-out;
   overflow-y: auto;
+  box-shadow: -2px 0 10px rgba(0, 0, 0, 0.3);
 }
 
 .hamburger-nav.mobile-open {
@@ -174,7 +220,7 @@ export default {
 .hamburger-nav ul {
   list-style: none;
   margin: 0;
-  padding: 20px 0;
+  padding: 40px 0 20px 0;
   flex-direction: column;
   text-align: left;
 }
@@ -188,9 +234,14 @@ export default {
   text-decoration: none;
   font-weight: normal;
   font-size: 14px;
-  padding: 15px 20px;
+  padding: 16px 20px;
   display: block;
   transition: background-color 0.3s ease;
+  margin: 0 20px 0 20px;
+  border-radius: 6px;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
 }
 
 .hamburger-nav a:hover {
@@ -198,78 +249,160 @@ export default {
   text-decoration: none;
 }
 
-/* Tablet and Mobile Styles */
-@media (max-width: 992px) {
+/* Desktop: Show only GALLERY in hamburger, hide mobile items */
+.hamburger-nav .mobile-item {
+  display: none;
+}
+
+.hamburger-nav .desktop-only {
+  display: block;
+}
+
+/* Large Desktop */
+@media (min-width: 1200px) {
   .logo img {
-    margin-left: 60px;
+    height: 40px;
+    margin-left: 80px;
+  }
+  
+  .nav-container {
+    margin-right: 80px;
   }
   
   .main-nav {
-    margin-right: 60px;
+    margin-right: 20px;
   }
-  
-  .hamburger-menu-icon {
-    margin-right: 60px;
+
+  .main-nav li {
+    margin-left: 30px;
+  }
+
+  .main-nav a {
+    font-size: 14px;
   }
 }
 
-@media (max-width: 768px) {
+/* Tablet Landscape */
+@media (max-width: 1199px) and (min-width: 992px) {
+  .logo img {
+    height: 38px;
+    margin-left: 60px;
+  }
+  
+  .nav-container {
+    margin-right: 60px;
+  }
+
+  .main-nav li {
+    margin-left: 25px;
+  }
+}
+
+/* Tablet Portrait */
+@media (max-width: 991px) and (min-width: 769px) {
+  .logo img {
+    height: 36px;
+    margin-left: 40px;
+  }
+  
+  .nav-container {
+    margin-right: 40px;
+  }
+
+  .main-nav li {
+    margin-left: 20px;
+  }
+
+  .main-nav a {
+    font-size: 13px;
+  }
+
+  /* Hide last 2 items from main nav */
+  .main-nav li:nth-child(4),
+  .main-nav li:nth-child(5) {
+    display: none;
+  }
+
+  /* Show corresponding items in hamburger menu */
+  .hamburger-nav .mobile-item:nth-child(5),
+  .hamburger-nav .mobile-item:nth-child(6) {
+    display: block;
+  }
+
+  .hamburger-nav {
+    width: 280px;
+  }
+}
+
+/* Mobile Landscape */
+@media (max-width: 768px) and (min-width: 481px) {
   .main-header {
-    padding: 10px 0 5px 0;
+    padding: 8px 0;
+    min-height: 52px;
   }
 
   .logo img {
-    margin-left: 40px;
-    height: 35px;
+    margin-left: 30px;
+    height: 34px;
+  }
+
+  .nav-container {
+    margin-right: 30px;
   }
 
   .main-nav {
     display: none;
-    margin-right: 10px;
   }
 
-  .hamburger-menu-icon {
-    margin-right: 40px;
+  .hamburger-nav .desktop-only {
+    display: none;
+  }
+
+  .hamburger-nav .mobile-item {
+    display: block;
   }
 
   .hamburger-nav {
     width: 100%;
     max-width: 100vw;
-    top: 61px;
-    height: calc(100vh - 61px);
-    right: 0;
+    top: 52px;
+    height: calc(100vh - 52px);
+    transform: translateY(-100%);
+    border-left: none;
+    border-top: 1px solid #252424;
   }
 
   .hamburger-nav.mobile-open {
-    display: flex;
-    transform: translateX(0);
+    transform: translateY(0);
   }
 
   .hamburger-nav ul {
+    padding: 30px 0 40px 0;
     text-align: center;
-    padding: 40px 0;
-    width: 100%;
   }
 
   .hamburger-nav li {
-    margin: 30px 0;
+    margin: 8px 0;
   }
 
   .hamburger-nav a {
-    font-size: 18px;
-    padding: 15px 0;
+    font-size: 16px;
+    padding: 14px 20px;
+    margin: 0 30px;
+    justify-content: center;
   }
 
-  .hamburger-nav a:hover {
-    background-color: transparent;
-    text-decoration: underline;
-    text-underline-offset: 4px;
+  .hamburger-backdrop {
+    top: 52px;
+    height: calc(100vh - 52px);
   }
 }
 
+/* Mobile Portrait */
 @media (max-width: 480px) {
   .main-header {
-    padding: 10px 0;
+    padding: 6px 0;
+    min-height: 48px;
   }
 
   .logo img {
@@ -277,22 +410,99 @@ export default {
     margin-left: 20px;
   }
 
-  .hamburger-menu-icon {
-    width: 25px;
-    height: 20px;
+  .nav-container {
     margin-right: 20px;
+  }
+
+  .main-nav {
+    display: none;
+  }
+
+  .hamburger-menu-icon {
+    width: 40px;
+    height: 40px;
+    padding: 8px;
+  }
+
+  .hamburger-menu-icon img {
+    width: 18px;
+    height: 18px;
   }
 
   .hamburger-nav {
     width: 100%;
     max-width: 100vw;
-    top: 56px;
-    height: calc(100vh - 56px);
+    top: 48px;
+    height: calc(100vh - 48px);
+  }
+
+  .hamburger-nav ul {
+    padding: 20px 0 30px 0;
+  }
+
+  .hamburger-nav li {
+    margin: 6px 0;
   }
 
   .hamburger-nav a {
-    font-size: 16px;
-    padding: 12px 0;
+    font-size: 15px;
+    padding: 12px 15px;
+    margin: 0 20px;
+    min-height: 40px;
+  }
+
+  .hamburger-backdrop {
+    top: 48px;
+    height: calc(100vh - 48px);
+  }
+}
+
+/* Extra Small Mobile */
+@media (max-width: 360px) {
+  .logo img {
+    height: 30px;
+    margin-left: 15px;
+  }
+
+  .nav-container {
+    margin-right: 15px;
+  }
+
+  .hamburger-menu-icon {
+    width: 36px;
+    height: 36px;
+  }
+
+  .hamburger-nav a {
+    font-size: 14px;
+    margin: 0 15px;
+    padding: 10px 12px;
+  }
+}
+
+/* Touch device optimizations */
+@media (hover: none) and (pointer: coarse) {
+  .main-nav a:hover,
+  .hamburger-nav a:hover {
+    background-color: transparent;
+    text-decoration: none;
+  }
+
+  .main-nav a:active {
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+
+  .hamburger-nav a:active {
+    background-color: #252424;
+  }
+
+  .hamburger-menu-icon:hover {
+    background-color: transparent;
+  }
+
+  .hamburger-menu-icon:active {
+    background-color: rgba(255, 255, 255, 0.1);
   }
 }
 </style>
