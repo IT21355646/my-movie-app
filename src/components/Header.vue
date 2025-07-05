@@ -66,23 +66,24 @@ export default {
   padding: 10px 0 5px 0;
   background-color: #000;
   color: #fff;
-  min-height: 60px; /* Ensures a consistent height */
+  min-height: 60px;
   position: sticky;
   top: 0;
   z-index: 1000;
-  border-bottom: 1px solid #252424; /* Add horizontal line */
+  border-bottom: 1px solid #252424;
   width: 100vw;
   margin-left: calc(-50vw + 50%);
+  overflow-x: hidden;
 }
 
 .logo img {
-  height: 40px; /* Adjust based on your logo size and design */
-  margin-left: 40px; /* Add back some spacing from edge */
+  height: 40px;
+  margin-left: 80px; /* Match other components' padding */
 }
 
 /* Desktop Navigation (default) */
 .main-nav {
-  margin-right: 10px; /* Reduced spacing from hamburger icon */
+  margin-right: 80px; /* Match other components' padding */
 }
 
 .main-nav ul {
@@ -114,7 +115,7 @@ export default {
 
 /* Hamburger Menu Icon */
 .hamburger-menu-icon {
-  display: flex; /* Show on both desktop and mobile */
+  display: flex;
   flex-direction: column;
   justify-content: space-around;
   width: 30px;
@@ -123,8 +124,8 @@ export default {
   border: none;
   cursor: pointer;
   padding: 0;
-  z-index: 1001; /* Above mobile menu */
-  margin-right: 40px; /* Add margin to keep icon within bounds */
+  z-index: 1001;
+  margin-right: 80px; /* Match other components' padding */
 }
 
 .hamburger-menu-icon .bar {
@@ -198,30 +199,45 @@ export default {
 }
 
 /* Tablet and Mobile Styles */
+@media (max-width: 992px) {
+  .logo img {
+    margin-left: 60px;
+  }
+  
+  .main-nav {
+    margin-right: 60px;
+  }
+  
+  .hamburger-menu-icon {
+    margin-right: 60px;
+  }
+}
+
 @media (max-width: 768px) {
   .main-header {
-    padding: 10px 0 5px 0; /* Remove horizontal padding */
+    padding: 10px 0 5px 0;
   }
 
   .logo img {
-    margin-left: 20px; /* Spacing from edge on mobile */
-    height: 35px; /* Slightly smaller logo */
+    margin-left: 40px;
+    height: 35px;
   }
 
   .main-nav {
-    display: none; /* Hide desktop nav on mobile */
-    margin-right: 10px; /* Keep consistent spacing */
+    display: none;
+    margin-right: 10px;
   }
 
   .hamburger-menu-icon {
-    margin-right: 20px; /* Reduced margin for mobile */
+    margin-right: 40px;
   }
 
   .hamburger-nav {
-    width: 80%; /* Larger width on tablet/mobile */
-    max-width: calc(100vw - 10px); /* Even smaller margin on mobile */
-    top: 61px; /* Adjust for smaller header height */
+    width: 100%;
+    max-width: 100vw;
+    top: 61px;
     height: calc(100vh - 61px);
+    right: 0;
   }
 
   .hamburger-nav.mobile-open {
@@ -231,16 +247,17 @@ export default {
 
   .hamburger-nav ul {
     text-align: center;
-    padding: 0;
+    padding: 40px 0;
+    width: 100%;
   }
 
   .hamburger-nav li {
-    margin: 20px 0;
+    margin: 30px 0;
   }
 
   .hamburger-nav a {
-    font-size: 24px;
-    padding:5px 0;
+    font-size: 18px;
+    padding: 15px 0;
   }
 
   .hamburger-nav a:hover {
@@ -250,33 +267,32 @@ export default {
   }
 }
 
-/* Mobile-specific adjustments */
 @media (max-width: 480px) {
   .main-header {
     padding: 10px 0;
   }
 
   .logo img {
-    height: 32px; /* Even smaller logo for very small screens */
-    margin-left: 15px; /* Minimal spacing from edge */
+    height: 32px;
+    margin-left: 20px;
   }
 
   .hamburger-menu-icon {
-    width: 25px; /* Slightly smaller hamburger icon */
+    width: 25px;
     height: 20px;
-    margin-right: 15px; /* Minimal margin for small screens */
+    margin-right: 20px;
   }
 
   .hamburger-nav {
-    width: 90%; /* Almost full width on very small screens */
-    max-width: calc(100vw - 5px); /* Minimal margin */
-    top: 56px; /* Adjust for even smaller header */
+    width: 100%;
+    max-width: 100vw;
+    top: 56px;
     height: calc(100vh - 56px);
   }
 
   .hamburger-nav a {
     font-size: 16px;
-    padding: 12px 15px;
+    padding: 12px 0;
   }
 }
 </style>

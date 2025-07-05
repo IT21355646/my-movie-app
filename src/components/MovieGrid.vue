@@ -1,15 +1,16 @@
 <template>
   <section class="movie-grid-section">
-    <h2 class="section-title">Collect your favourites</h2>
-
-    <div class="search-bar">
-      <input
-        type="text"
-        v-model="searchQuery"
-        @input="searchMovies"
-        placeholder="Q Search title and add to grid"
-        class="search-input"
-      />
+    <div class="header-row">
+      <h2 class="section-title">Collect your favourites</h2>
+      <div class="search-bar">
+        <input
+          type="text"
+          v-model="searchQuery"
+          @input="searchMovies"
+          placeholder="Q Search title and add to grid"
+          class="search-input"
+        />
+      </div>
     </div>
 
     <div class="movie-list">
@@ -147,16 +148,25 @@ export default {
   margin-right: -50vw;
 }
 
+.header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40px;
+  padding: 0 80px; /* Changed from 0 20px */
+}
+
 .section-title {
   font-size: 2.5em; /* Adjust as per design */
   color: #fff; /* White color for this title */
-  margin-bottom: 40px; /* Spacing below title */
+  margin: 0;
   font-weight: bold;
+  text-align: left;
 }
 
 .search-bar {
-  margin-bottom: 40px; /* Spacing below search bar */
-  padding: 0 20px; /* Add padding only to search bar */
+  margin: 0;
+  padding: 0;
 }
 
 .search-input {
@@ -177,10 +187,10 @@ export default {
 
 .movie-list {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Flexible columns */
-  gap: 30px; /* Spacing between movie items */
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
   justify-content: center;
-  padding: 0 20px; /* Add padding only to movie list */
+  padding: 0 80px; /* Changed from 0 20px */
 }
 
 .movie-item {
@@ -257,61 +267,66 @@ export default {
 
 
 /* Responsive adjustments for Movie Grid */
-@media (max-width: 992px) { /* Tablet breakpoint - show 2 movies per row */
+@media (max-width: 992px) {
   .movie-list {
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Adjust for 2 columns */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     max-width: none;
     margin: 0 auto;
-    padding: 0 15px; /* Reduce padding on smaller screens */
+    padding: 0 60px; /* Reduced from 80px for tablets */
   }
   .section-title {
     font-size: 2.2em;
   }
-  .search-bar {
-    padding: 0 15px;
+  .header-row {
+    padding: 0 60px; /* Reduced from 80px for tablets */
   }
 }
 
-@media (max-width: 768px) { /* Even smaller tablet/large mobile */
+@media (max-width: 768px) {
   .movie-grid-section {
-    padding: 40px 0; /* Remove horizontal padding */
+    padding: 40px 0;
   }
   .movie-list {
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); /* Adjust for potentially 2 smaller columns */
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
     max-width: none;
     margin: 0 auto;
-    padding: 0 10px; /* Minimal padding */
+    padding: 0 40px; /* Reduced from 80px for mobile */
   }
   .section-title {
     font-size: 2em;
   }
+  .header-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+    padding: 0 40px; /* Reduced from 80px for mobile */
+  }
   .search-bar {
-    padding: 0 10px;
+    width: 100%;
   }
 }
 
-@media (max-width: 576px) { /* Mobile breakpoint - show 1 movie per row */
+@media (max-width: 576px) {
   .movie-list {
-    grid-template-columns: 1fr; /* Single column */
+    grid-template-columns: 1fr;
     max-width: none;
     margin: 0 auto;
-    padding: 0 10px;
+    padding: 0 20px; /* Reduced from 80px for small mobile */
   }
   .movie-item {
-    margin: 0 auto; /* Center single item */
+    margin: 0 auto;
   }
   .movie-poster {
-    height: 250px; /* Adjust height for mobile */
+    height: 250px;
   }
   .section-title {
     font-size: 1.8em;
-    margin-bottom: 30px;
   }
   .search-input {
-    max-width: 90%;
+    max-width: 100%;
   }
-  .search-bar {
-    padding: 0 10px;
+  .header-row {
+    padding: 0 20px; /* Reduced from 80px for small mobile */
   }
 }
 </style>

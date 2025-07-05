@@ -103,7 +103,7 @@ export default {
 .contact-section {
   display: flex;
   flex-direction: column;
-  padding: 60px 20px;
+  padding: 60px 80px;
   width: 100vw;
   margin: 0;
   box-sizing: border-box;
@@ -269,40 +269,81 @@ export default {
 }
 
 /* Responsive adjustments */
-@media (max-width: 768px) {
+@media (max-width: 992px) {
+  .contact-section {
+    padding: 60px 60px;
+  }
+  
   .contact-content-wrapper {
-    flex-direction: column; /* Stack form and map vertically */
-    align-items: center; /* Center items when stacked */
+    gap: 20px;
+  }
+  
+  .contact-form-container,
+  .map-and-info-container {
+    min-width: 280px;
+  }
+}
+
+@media (max-width: 768px) {
+  .contact-section {
+    padding: 40px 40px;
+  }
+  
+  .contact-content-wrapper {
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
   }
 
   .contact-form-container,
   .map-and-info-container {
-    width: 100%; /* Full width when stacked */
+    width: 100%;
+    max-width: 100%;
   }
 
   .form-group {
-    width: 100%; /* Make all form fields full width */
+    width: 100%;
     margin-right: 0;
+    margin-bottom: 20px;
+  }
+  
+  .section-title {
+    font-size: 2em;
+  }
+  
+  .intro-text {
+    font-size: 1em;
   }
 }
 
 @media (max-width: 480px) {
   .contact-section {
-    padding: 40px 15px;
+    padding: 30px 20px;
   }
+  
   .section-title {
-    font-size: 2em;
+    font-size: 1.8em;
   }
+  
   .intro-text {
     font-size: 0.9em;
+    margin-bottom: 30px;
   }
+  
   .contact-form-container,
   .map-and-info-container {
     padding: 20px;
   }
+  
   .submit-button {
-    padding: 10px 20px;
+    padding: 12px 20px;
     font-size: 1em;
+    width: 100%;
+    max-width: 200px;
+  }
+  
+  .map-placeholder iframe {
+    height: 300px;
   }
 }
 </style>

@@ -40,12 +40,12 @@ export default {
 
 .footer-content-wrapper {
   display: flex;
-  flex-wrap: wrap; /* Allow wrapping on smaller screens */
-  justify-content: space-between; /* Distribute items horizontally */
-  align-items: center; /* Vertically align items */
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
   width: 100%;
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 0 80px;
 }
 
 .footer-section {
@@ -100,29 +100,59 @@ export default {
 }
 
 /* Responsive adjustments */
-@media (max-width: 768px) {
+@media (max-width: 992px) {
   .footer-content-wrapper {
-    flex-direction: column; /* Stack sections vertically */
+    padding: 0 60px;
+  }
+}
+
+@media (max-width: 768px) {
+  .app-footer {
+    padding: 40px 0;
+  }
+  
+  .footer-content-wrapper {
+    flex-direction: column;
     text-align: center;
+    padding: 0 40px;
+    gap: 20px;
   }
 
   .footer-section {
-    flex-basis: 100%; /* Take full width */
-    text-align: center !important; /* Override specific alignment */
-    margin-bottom: 20px; /* Add spacing between stacked sections */
-  }
-
-  .footer-section:last-child {
+    flex-basis: 100%;
+    text-align: center !important;
     margin-bottom: 0;
+    min-width: auto;
+  }
+  
+  .social-icons {
+    justify-content: center;
   }
 }
 
 @media (max-width: 480px) {
   .app-footer {
-    padding: 30px 15px;
+    padding: 30px 0;
   }
+  
+  .footer-content-wrapper {
+    padding: 0 20px;
+  }
+  
   .footer-section p {
     font-size: 0.85em;
+    line-height: 1.4;
+  }
+  
+  .footer-section h3 {
+    font-size: 1em;
+    margin-bottom: 10px;
+  }
+  
+  .social-icon {
+    width: 30px;
+    height: 30px;
+    font-size: 1.2em;
   }
 }
 </style>

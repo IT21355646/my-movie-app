@@ -65,20 +65,39 @@ export default {
 }
 
 /* Responsive adjustments */
+@media (max-width: 992px) {
+  .content-container {
+    margin-left: 60px;
+    padding-left: 0;
+  }
+  
+  .section-title {
+    font-size: 2.5em;
+  }
+  
+  .intro-text {
+    font-size: 1.2em;
+    max-width: 60%;
+  }
+}
+
 @media (max-width: 768px) {
   .introduction-section {
     padding: 30px 0;
   }
+  
   .content-container {
-    margin: 0;
+    margin-left: 40px;
     padding: 0;
   }
+  
   .section-title {
-    font-size: 2.2em; /* Increased from 1.8em */
+    font-size: 2.2em;
   }
+  
   .intro-text {
-    font-size: 1.1em; /* Increased from 0.9em */
-    max-width: 70%; /* Slightly wider on tablets */
+    font-size: 1.1em;
+    max-width: 80%;
   }
 }
 
@@ -86,16 +105,20 @@ export default {
   .introduction-section {
     padding: 25px 0;
   }
+  
   .content-container {
-    margin: 0;
+    margin-left: 20px;
     padding: 0;
+    max-width: calc(100% - 40px);
   }
+  
   .section-title {
-    font-size: 1.5em; /* Increased from 1.2em */
+    font-size: 1.8em;
   }
+  
   .intro-text {
-    font-size: 1em; /* Increased from 0.8em */
-    max-width: 100%; /* Full width on mobile */
+    font-size: 1em;
+    max-width: 100%;
   }
 }
 </style>
