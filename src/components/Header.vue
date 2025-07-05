@@ -63,7 +63,7 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 60px 5px 60px;
+  padding: 10px 0 5px 0;
   background-color: #000;
   color: #fff;
   min-height: 60px; /* Ensures a consistent height */
@@ -71,16 +71,18 @@ export default {
   top: 0;
   z-index: 1000;
   border-bottom: 1px solid #252424; /* Add horizontal line */
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
 }
 
 .logo img {
   height: 40px; /* Adjust based on your logo size and design */
-  margin-left: 40px; /* Add left spacing */
+  margin-left: 40px; /* Add back some spacing from edge */
 }
 
 /* Desktop Navigation (default) */
 .main-nav {
-  margin-right: 40px; /* Add right spacing */
+  margin-right: 10px; /* Reduced spacing from hamburger icon */
 }
 
 .main-nav ul {
@@ -98,7 +100,7 @@ export default {
   color: #fff;
   text-decoration: none;
   font-weight: normal;
-  font-size: 12px;
+  font-size: 14px;
   padding: 5px 0;
   display: block;
   transition: text-decoration 0.3s ease; /* For hover effect */
@@ -122,6 +124,7 @@ export default {
   cursor: pointer;
   padding: 0;
   z-index: 1001; /* Above mobile menu */
+  margin-right: 40px; /* Add margin to keep icon within bounds */
 }
 
 .hamburger-menu-icon .bar {
@@ -146,11 +149,11 @@ export default {
 /* Hamburger Navigation (hidden by default, shown when toggled) */
 .hamburger-nav {
   display: none;
-  position: absolute; /* Changed from fixed to absolute */
+  position: fixed; /* Changed back to fixed for better positioning */
   top: 71px; /* Below the header */
   right: 0;
-  width: 250px; /* Fixed width instead of percentage */
-  max-width: calc(100% - 40px); /* Use 100% instead of 100vw to respect app bounds */
+  width: 300px; /* Increased width */
+  max-width: calc(100vw - 20px); /* Ensure it doesn't exceed viewport */
   height: calc(100vh - 71px); /* Full height minus header */
   background-color: #000;
   border-left: 1px solid #252424;
@@ -197,20 +200,26 @@ export default {
 /* Tablet and Mobile Styles */
 @media (max-width: 768px) {
   .main-header {
-    padding: 10px 20px 5px 20px; /* Reduce horizontal padding */
+    padding: 10px 0 5px 0; /* Remove horizontal padding */
   }
 
   .logo img {
-    margin-left: 0; /* Remove left margin on mobile */
+    margin-left: 20px; /* Spacing from edge on mobile */
     height: 35px; /* Slightly smaller logo */
   }
 
   .main-nav {
     display: none; /* Hide desktop nav on mobile */
+    margin-right: 10px; /* Keep consistent spacing */
+  }
+
+  .hamburger-menu-icon {
+    margin-right: 20px; /* Reduced margin for mobile */
   }
 
   .hamburger-nav {
-    width: 50%; /* Half width on tablet/mobile */
+    width: 80%; /* Larger width on tablet/mobile */
+    max-width: calc(100vw - 10px); /* Even smaller margin on mobile */
     top: 61px; /* Adjust for smaller header height */
     height: calc(100vh - 61px);
   }
@@ -244,16 +253,23 @@ export default {
 /* Mobile-specific adjustments */
 @media (max-width: 480px) {
   .main-header {
-    padding: 10px 15px;
+    padding: 10px 0;
   }
 
   .logo img {
     height: 32px; /* Even smaller logo for very small screens */
-    margin-left: 0; /* Ensure no left margin */
+    margin-left: 15px; /* Minimal spacing from edge */
+  }
+
+  .hamburger-menu-icon {
+    width: 25px; /* Slightly smaller hamburger icon */
+    height: 20px;
+    margin-right: 15px; /* Minimal margin for small screens */
   }
 
   .hamburger-nav {
-    width: 60%; /* Slightly larger on very small screens */
+    width: 90%; /* Almost full width on very small screens */
+    max-width: calc(100vw - 5px); /* Minimal margin */
     top: 56px; /* Adjust for even smaller header */
     height: calc(100vh - 56px);
   }
@@ -261,11 +277,6 @@ export default {
   .hamburger-nav a {
     font-size: 16px;
     padding: 12px 15px;
-  }
-
-  .hamburger-menu-icon {
-    width: 25px; /* Slightly smaller hamburger icon */
-    height: 20px;
   }
 }
 </style>

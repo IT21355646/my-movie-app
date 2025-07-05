@@ -25,8 +25,10 @@ export default {
 }
 
 .content-container {
-  width: 50%;
-  padding: 0 30px 0 100px;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px 0 60px;
   text-align: left;
 }
 
@@ -51,8 +53,7 @@ export default {
     padding: 30px 0;
   }
   .content-container {
-    width: 80%;
-    padding: 0 20px 0 60px;
+    padding: 0 20px 0 40px;
   }
   .section-title {
     font-size: 1.8em;
@@ -67,8 +68,7 @@ export default {
     padding: 25px 0;
   }
   .content-container {
-    width: 90%;
-    padding: 0 15px 0 40px;
+    padding: 0 15px 0 20px;
   }
   .section-title {
     font-size: 1.2em;

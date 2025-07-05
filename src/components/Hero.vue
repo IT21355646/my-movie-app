@@ -12,7 +12,8 @@ export default {
 
 <style scoped>
 .hero-section {
-  width: 100%;
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
   position: relative; /* Needed for positioning content or overlays */
   overflow: hidden; /* Ensures image doesn't overflow */
 }

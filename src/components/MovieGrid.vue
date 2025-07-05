@@ -130,13 +130,12 @@ export default {
 </script>
 
 <style scoped>
-/* ... (Your existing CSS for .movie-grid-section, .section-title, .search-bar, .search-input, .movie-list, .movie-item, etc.) ... */
-
 .movie-grid-section {
   padding: 60px 20px;
-  max-width: 1200px; /* Adjust max width as per design */
-  margin: 0 auto;
+  width: 100%;
+  margin: 0;
   text-align: center; /* For centering the title and search bar */
+  background-color: #1d1d1d; /* Grey background */
 }
 
 .section-title {
@@ -250,7 +249,7 @@ export default {
 @media (max-width: 992px) { /* Tablet breakpoint - show 2 movies per row */
   .movie-list {
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Adjust for 2 columns */
-    max-width: 600px; /* Confine to max 2 columns width */
+    max-width: none;
     margin: 0 auto;
   }
   .section-title {
@@ -264,7 +263,7 @@ export default {
   }
   .movie-list {
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); /* Adjust for potentially 2 smaller columns */
-    max-width: 480px; /* Example max width */
+    max-width: none;
     margin: 0 auto;
   }
   .section-title {
@@ -275,7 +274,7 @@ export default {
 @media (max-width: 576px) { /* Mobile breakpoint - show 1 movie per row */
   .movie-list {
     grid-template-columns: 1fr; /* Single column */
-    max-width: 320px; /* Confine to single column width */
+    max-width: none;
     margin: 0 auto;
   }
   .movie-item {

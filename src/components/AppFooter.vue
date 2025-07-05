@@ -35,6 +35,7 @@ export default {
   text-align: center;
   font-size: 0.9em;
   border-top: 1px solid #222; /* Small separator from content above */
+  width: 100%;
 }
 
 .footer-content-wrapper {
@@ -42,8 +43,9 @@ export default {
   flex-wrap: wrap; /* Allow wrapping on smaller screens */
   justify-content: space-between; /* Distribute items horizontally */
   align-items: center; /* Vertically align items */
-  max-width: 1200px;
+  width: 100%;
   margin: 0 auto;
+  padding: 0 20px;
 }
 
 .footer-section {

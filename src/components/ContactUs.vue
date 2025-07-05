@@ -102,8 +102,8 @@ export default {
 <style scoped>
 .contact-section {
   padding: 60px 20px;
-  max-width: 1200px;
-  margin: 0 auto;
+  width: 100%;
+  margin: 0;
   text-align: center;
   color: #fff;
 }
@@ -133,7 +133,6 @@ export default {
 .contact-form-container {
   flex: 1; /* Takes available space */
   min-width: 300px; /* Minimum width before wrapping */
-  max-width: 500px; /* Max width for form */
   background-color: #1a1a1a;
   padding: 30px;
   border-radius: 8px;
@@ -229,7 +228,6 @@ export default {
 .map-and-info-container {
   flex: 1;
   min-width: 300px; /* Minimum width before wrapping */
-  max-width: 550px; /* Max width for map and info */
   display: flex;
   flex-direction: column;
   gap: 30px; /* Space between map and address info */
@@ -272,7 +270,6 @@ export default {
   .contact-form-container,
   .map-and-info-container {
     width: 100%; /* Full width when stacked */
-    max-width: 500px; /* Keep max width */
   }
 
   .form-group {
