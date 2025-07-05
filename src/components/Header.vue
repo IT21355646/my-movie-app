@@ -354,12 +354,13 @@ export default {
     display: none;
   }
 
+  /* Mobile: Hide desktop-only items, show all mobile items */
   .hamburger-nav .desktop-only {
     display: none;
   }
 
   .hamburger-nav .mobile-item {
-    display: block;
+    display: block !important;
   }
 
   .hamburger-nav {
@@ -418,15 +419,13 @@ export default {
     display: none;
   }
 
-  .hamburger-menu-icon {
-    width: 40px;
-    height: 40px;
-    padding: 8px;
+  /* Mobile: Hide desktop-only items, show all mobile items */
+  .hamburger-nav .desktop-only {
+    display: none;
   }
 
-  .hamburger-menu-icon img {
-    width: 18px;
-    height: 18px;
+  .hamburger-nav .mobile-item {
+    display: block !important;
   }
 
   .hamburger-nav {
@@ -477,6 +476,11 @@ export default {
     font-size: 14px;
     margin: 0 15px;
     padding: 10px 12px;
+  }
+
+  /* Ensure mobile items are visible on extra small screens */
+  .hamburger-nav .mobile-item {
+    display: block !important;
   }
 }
 
