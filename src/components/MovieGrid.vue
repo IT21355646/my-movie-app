@@ -237,6 +237,14 @@ export default {
   padding-bottom: 15px;
   text-align: left;
   border-radius: 8px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+  animation: fadeInUp 0.6s ease-out;
+}
+
+.movie-item:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4);
+  background-color: #454545;
 }
 
 .movie-poster {
@@ -245,6 +253,12 @@ export default {
   object-fit: cover;
   display: block;
   border-bottom: 1px solid #333;
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.movie-item:hover .movie-poster {
+  transform: scale(1.05);
+  filter: brightness(1.1);
 }
 
 .movie-title {
@@ -252,6 +266,11 @@ export default {
   margin: 12px 12px 8px 12px;
   line-height: 1.3;
   color: #fff;
+  transition: color 0.3s ease;
+}
+
+.movie-item:hover .movie-title {
+  color: #e0b000;
 }
 
 .movie-description {
@@ -265,6 +284,11 @@ export default {
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
+  transition: color 0.3s ease;
+}
+
+.movie-item:hover .movie-description {
+  color: #ffffff;
 }
 
 .close-button {
@@ -288,17 +312,67 @@ export default {
   line-height: 1;
   z-index: 5;
   transition: all 0.3s ease;
+  opacity: 0;
+  transform: scale(0.8);
+}
+
+.movie-item:hover .close-button {
+  opacity: 1;
+  transform: scale(1);
 }
 
 .close-icon {
   width: 10px;
   height: 10px;
+  transition: transform 0.3s ease;
 }
 
 .close-button:hover {
   background-color: #e0b000;
-  transform: scale(1.05);
+  transform: scale(1.1);
 }
+
+.close-button:hover .close-icon {
+  transform: rotate(90deg);
+}
+
+.close-button:active {
+  transform: scale(0.95);
+}
+
+/* Animation keyframes */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+/* Loading animation for new movies */
+.movie-item.loading {
+  animation: pulse 1.5s infinite;
+}
+
+/* Stagger animation for multiple items */
+.movie-item:nth-child(1) { animation-delay: 0s; }
+.movie-item:nth-child(2) { animation-delay: 0.1s; }
+.movie-item:nth-child(3) { animation-delay: 0.2s; }
+.movie-item:nth-child(4) { animation-delay: 0.3s; }
+.movie-item:nth-child(5) { animation-delay: 0.4s; }
+.movie-item:nth-child(6) { animation-delay: 0.5s; }
 
 .no-movies-message, .loading-message, .error-message {
   color: #fff;
@@ -381,7 +455,7 @@ export default {
   }
 
   .search-bar {
-    margin: 0 70px 0 0;
+    margin: 0;
   }
 }
 
@@ -436,7 +510,7 @@ export default {
   }
 
   .search-bar {
-    margin: 0 30px 0 0;
+    margin: 0;
   }
 }
 
@@ -482,7 +556,9 @@ export default {
 
   .movie-description {
     font-size: 0.9em;
-    min-height: 70px;
+    margin: 0 15px 15px 15px;
+    min-height: 90px;
+    -webkit-line-clamp: 4;
   }
 
   .close-button {
@@ -491,7 +567,7 @@ export default {
   }
 
   .search-bar {
-    margin: 0 20px 0 0;
+    margin: 0;
   }
 }
 
@@ -698,6 +774,30 @@ export default {
 
 /* Touch device optimizations */
 @media (hover: none) and (pointer: coarse) {
+  .movie-item:hover {
+    transform: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    background-color: #3c3c3c;
+  }
+
+  .movie-item:hover .movie-poster {
+    transform: none;
+    filter: none;
+  }
+
+  .movie-item:hover .movie-title {
+    color: #fff;
+  }
+
+  .movie-item:hover .movie-description {
+    color: #ccc;
+  }
+
+  .close-button {
+    opacity: 1;
+    transform: scale(1);
+  }
+
   .close-button:hover {
     background-color: rgba(26, 26, 28, 0.9);
     transform: scale(1);
@@ -706,10 +806,6 @@ export default {
   .close-button:active {
     background-color: #e0b000;
     transform: scale(0.95);
-  }
-
-  .search-input {
-    font-size: 16px; /* Prevents zoom on iOS */
   }
 
   .movie-item {

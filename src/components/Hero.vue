@@ -27,7 +27,6 @@ export default {
 <style scoped>
 .hero-section {
   width: 100vw;
-  margin-left: calc(-50vw + 50%);
   position: relative;
   overflow: hidden;
   display: flex;
@@ -44,7 +43,7 @@ export default {
   min-height: 300px;
   max-height: 500px;
   transform: scale(1);
-  transition: transform 0.3s ease;
+  transition: opacity 0.5s ease;
 }
 
 .hero-video {
@@ -52,11 +51,11 @@ export default {
   height: auto;
   display: none;
   object-fit: cover;
-  object-position: bottom;
+  object-position: top;
   min-height: 300px;
   max-height: 500px;
   transform: scale(1);
-  transition: all 0.3s ease;
+  transition: opacity 0.15s ease;
   position: absolute;
   top: 0;
   left: 0;
