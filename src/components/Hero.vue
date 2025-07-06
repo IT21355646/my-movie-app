@@ -1,12 +1,26 @@
 <template>
-  <section class="hero-section">
+  <section class="hero-section" @mouseenter="playVideo" @mouseleave="pauseVideo">
     <img src="../assets/Images/Header Image.jpg" alt="Hero Image" class="hero-image" />
-    </section>
+    <video ref="heroVideo" src="../assets/Videos/Header Video.mp4" class="hero-video" muted loop autoplay></video>
+  </section>
 </template>
 
 <script>
 export default {
   name: 'AppHero',
+  methods: {
+    playVideo() {
+      if (window.innerWidth >= 993) {
+        this.$refs.heroVideo.play();
+      }
+    },
+    pauseVideo() {
+      if (window.innerWidth >= 993) {
+        this.$refs.heroVideo.pause();
+        this.$refs.heroVideo.currentTime = 0;
+      }
+    }
+  }
 };
 </script>
 
@@ -22,7 +36,7 @@ export default {
 }
 
 .hero-image {
-  width: 100%;
+  width: 100vw;
   height: auto;
   display: block;
   object-fit: cover;
@@ -31,6 +45,34 @@ export default {
   max-height: 500px;
   transform: scale(1);
   transition: transform 0.3s ease;
+}
+
+.hero-video {
+  width: 100vw;
+  height: auto;
+  display: none;
+  object-fit: cover;
+  object-position: bottom;
+  min-height: 300px;
+  max-height: 500px;
+  transform: scale(1);
+  transition: all 0.3s ease;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+}
+
+/* Desktop hover effect */
+@media (min-width: 993px) {
+  .hero-section:hover .hero-image {
+    opacity: 0;
+  }
+  
+  .hero-section:hover .hero-video {
+    display: block;
+    opacity: 1;
+  }
 }
 
 /* Tablet */
