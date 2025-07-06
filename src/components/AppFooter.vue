@@ -109,7 +109,25 @@ export default {
 /* Responsive adjustments */
 @media (max-width: 992px) {
   .footer-content-wrapper {
-    padding: 0 120px;
+    flex-direction: column;
+    gap: 10px;
+    padding: 0 40px;
+  }
+
+  .footer-section {
+    flex-basis: 100%;
+    width: 100%;
+    text-align: center !important;
+    white-space: normal;
+  }
+
+  .footer-section.copyright {
+    text-align: center !important;
+    margin-bottom: 5px;
+  }
+
+  .footer-section.attribution {
+    text-align: center !important;
   }
 }
 

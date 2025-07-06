@@ -465,9 +465,11 @@ export default {
   }
 
   .movie-list {
-    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    grid-template-columns: repeat(2, 1fr);
     gap: 20px;
     padding: 0 40px;
+    max-width: 800px;
+    margin: 0 auto;
   }
 
   .movie-poster {
@@ -527,7 +529,7 @@ export default {
   }
 
   .movie-list {
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(2, 1fr);
     gap: 18px;
     padding: 0 30px;
   }

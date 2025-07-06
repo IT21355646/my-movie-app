@@ -521,11 +521,16 @@ export default {
   }
   
   .contact-content-wrapper {
+    flex-direction: column;
+    align-items: stretch;
     gap: 50px;
   }
   
   .contact-form-container,
   .map-and-info-container {
+    width: 100%;
+    max-width: 100%;
+    flex: none;
     min-width: 280px;
   }
 
@@ -545,7 +550,7 @@ export default {
   
   .contact-content-wrapper {
     flex-direction: column;
-    align-items: center;
+    align-items: stretch; /* Changed from center to stretch */
     gap: 40px;
   }
 
@@ -553,6 +558,7 @@ export default {
   .map-and-info-container {
     width: 100%;
     max-width: 100%;
+    flex: none; /* Remove flex sizing */
   }
 
   .form-group {
