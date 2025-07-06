@@ -250,6 +250,22 @@ export default {
   box-sizing: border-box;
 }
 
+.form-group input[type="text"]:hover,
+.form-group input[type="email"]:hover,
+.form-group input[type="tel"]:hover,
+.form-group textarea:hover,
+.form-group input[type="text"]:focus,
+.form-group input[type="email"]:focus,
+.form-group input[type="tel"]:focus,
+.form-group textarea:focus,
+.form-group input[type="text"]:active,
+.form-group input[type="email"]:active,
+.form-group input[type="tel"]:active,
+.form-group textarea:active {
+  border-color: #F0C000;
+  outline: none;
+}
+
 .form-group input::placeholder,
 .form-group textarea::placeholder {
   color: #888;
