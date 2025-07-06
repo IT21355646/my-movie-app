@@ -92,7 +92,9 @@ export default {
   border-bottom: 1px solid #252424;
   width: 100vw;
   margin-left: calc(-50vw + 50%);
+  margin-right: calc(-50vw + 50%);
   overflow-x: hidden;
+  box-sizing: border-box;
 }
 
 .logo img {
@@ -286,11 +288,11 @@ export default {
 @media (max-width: 1199px) and (min-width: 992px) {
   .logo img {
     height: 38px;
-    margin-left: 60px;
+    margin-left: 40px;
   }
   
   .nav-container {
-    margin-right: 60px;
+    margin-right: 40px;
   }
 
   .main-nav li {
@@ -300,21 +302,30 @@ export default {
 
 /* Tablet Portrait */
 @media (max-width: 991px) and (min-width: 769px) {
+  .main-header {
+    position: fixed;
+    left: 0;
+    right: 0;
+    width: 100vw;
+    margin: 0;
+    box-sizing: border-box;
+  }
+
   .logo img {
     height: 36px;
-    margin-left: 40px;
+    margin-left: 20px;
   }
   
   .nav-container {
-    margin-right: 40px;
+    margin-right: 20px;
   }
 
   .main-nav li {
-    margin-left: 20px;
+    margin-left: 15px;
   }
 
   .main-nav a {
-    font-size: 13px;
+    font-size: 12px;
   }
 
   /* Hide last 2 items from main nav */
@@ -330,7 +341,38 @@ export default {
   }
 
   .hamburger-nav {
-    width: 280px;
+    width: 100vw;
+    left: 0;
+    top: 56px;
+    height: calc(100vh - 56px);
+    transform: translateY(-100%);
+    border-left: none;
+    border-top: 1px solid #252424;
+  }
+
+  .hamburger-nav.mobile-open {
+    transform: translateY(0);
+  }
+
+  .hamburger-nav ul {
+    padding: 40px 0 40px 0;
+    text-align: center;
+  }
+
+  .hamburger-nav li {
+    margin: 10px 0;
+  }
+
+  .hamburger-nav a {
+    font-size: 16px;
+    padding: 16px 20px;
+    margin: 0 40px;
+    justify-content: center;
+  }
+
+  .hamburger-backdrop {
+    top: 56px;
+    height: calc(100vh - 56px);
   }
 }
 
