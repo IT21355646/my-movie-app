@@ -10,7 +10,7 @@
           <li><a href="#">OUR SCREENS</a></li>
           <li><a href="#">SCHEDULE</a></li>
           <li><a href="#">MOVIE LIBRARY</a></li>
-          <li><a href="#">LOCATION & CONTACT</a></li>
+          <li class="tablet-hide"><a href="#">LOCATION & CONTACT</a></li>
         </ul>
       </nav>
       <button class="hamburger-menu-icon" :class="{ 'active': isMobileMenuOpen }" @click="toggleMobileMenu">
@@ -22,13 +22,16 @@
       <ul>
         <!-- Desktop: Only GALLERY -->
         <li class="desktop-only"><a href="#">GALLERY</a></li>
-        <!-- Mobile: All items when screen is small -->
-        <li class="mobile-item"><a href="#">HOME</a></li>
-        <li class="mobile-item"><a href="#">OUR SCREENS</a></li>
-        <li class="mobile-item"><a href="#">SCHEDULE</a></li>
-        <li class="mobile-item"><a href="#">MOVIE LIBRARY</a></li>
-        <li class="mobile-item"><a href="#">LOCATION & CONTACT</a></li>
-        <li class="mobile-item"><a href="#">GALLERY</a></li>
+        <!-- Tablet: LOCATION & CONTACT and GALLERY -->
+        <li class="tablet-only"><a href="#">LOCATION & CONTACT</a></li>
+        <li class="tablet-only"><a href="#">GALLERY</a></li>
+        <!-- Mobile: All items -->
+        <li class="mobile-only"><a href="#">HOME</a></li>
+        <li class="mobile-only"><a href="#">OUR SCREENS</a></li>
+        <li class="mobile-only"><a href="#">SCHEDULE</a></li>
+        <li class="mobile-only"><a href="#">MOVIE LIBRARY</a></li>
+        <li class="mobile-only"><a href="#">LOCATION & CONTACT</a></li>
+        <li class="mobile-only"><a href="#">GALLERY</a></li>
       </ul>
     </nav>
   </header>
@@ -251,12 +254,18 @@ export default {
   text-decoration: none;
 }
 
-/* Desktop: Show only GALLERY in hamburger, hide mobile items */
-.hamburger-nav .mobile-item {
+/* Desktop: Show only GALLERY in hamburger */
+.hamburger-nav .desktop-only {
+  display: block;
+}
+
+.hamburger-nav .tablet-only,
+.hamburger-nav .mobile-only {
   display: none;
 }
 
-.hamburger-nav .desktop-only {
+/* Hide LOCATION & CONTACT from main nav on smaller screens */
+.main-nav .tablet-hide {
   display: block;
 }
 
@@ -282,6 +291,16 @@ export default {
   .main-nav a {
     font-size: 14px;
   }
+  
+  /* Desktop: Only show GALLERY in hamburger */
+  .hamburger-nav .desktop-only {
+    display: block;
+  }
+  
+  .hamburger-nav .tablet-only,
+  .hamburger-nav .mobile-only {
+    display: none;
+  }
 }
 
 /* Tablet Landscape */
@@ -298,16 +317,67 @@ export default {
   .main-nav li {
     margin-left: 25px;
   }
+  
+  /* Hide LOCATION & CONTACT from main nav on larger tablets */
+  .main-nav .tablet-hide {
+    display: none !important;
+  }
+  
+  /* Show LOCATION & CONTACT and GALLERY in hamburger menu on larger tablets */
+  .hamburger-nav .desktop-only {
+    display: none !important;
+  }
+  
+  .hamburger-nav .tablet-only {
+    display: block !important;
+  }
+  
+  .hamburger-nav .mobile-only {
+    display: none !important;
+  }
+
+  .hamburger-nav {
+    width: 280px;
+    right: 0;
+    top: 56px;
+    height: calc(100vh - 56px);
+    transform: translateX(100%);
+    border-left: 1px solid #252424;
+    border-top: none;
+    box-shadow: -2px 0 10px rgba(0, 0, 0, 0.3);
+  }
+
+  .hamburger-nav.mobile-open {
+    transform: translateX(0);
+  }
+
+  .hamburger-nav ul {
+    padding: 40px 0 20px 0;
+    text-align: left;
+  }
+
+  .hamburger-nav li {
+    margin: 0;
+  }
+
+  .hamburger-nav a {
+    font-size: 14px;
+    padding: 16px 20px;
+    margin: 0 20px;
+    justify-content: flex-start;
+    display: flex;
+    align-items: center;
+  }
 }
 
 /* Tablet Portrait */
 @media (max-width: 991px) and (min-width: 769px) {
   .main-header {
-    position: fixed;
-    left: 0;
-    right: 0;
+    position: sticky;
+    top: 0;
     width: 100vw;
-    margin: 0;
+    margin-left: calc(-50vw + 50%);
+    margin-right: calc(-50vw + 50%);
     box-sizing: border-box;
   }
 
@@ -328,51 +398,55 @@ export default {
     font-size: 12px;
   }
 
-  /* Hide last 2 items from main nav */
-  .main-nav li:nth-child(4),
-  .main-nav li:nth-child(5) {
-    display: none;
+  /* Keep first 4 items in main nav, hide LOCATION & CONTACT */
+  .main-nav .tablet-hide {
+    display: none !important;
   }
 
-  /* Show corresponding items in hamburger menu */
-  .hamburger-nav .mobile-item:nth-child(5),
-  .hamburger-nav .mobile-item:nth-child(6) {
-    display: block;
+  /* Show only LOCATION & CONTACT and GALLERY in hamburger menu on tablet */
+  .hamburger-nav .desktop-only {
+    display: none !important;
+  }
+
+  .hamburger-nav .mobile-only {
+    display: none !important;
+  }
+
+  .hamburger-nav .tablet-only {
+    display: block !important;
   }
 
   .hamburger-nav {
-    width: 100vw;
-    left: 0;
+    width: 280px;
+    right: 0;
     top: 56px;
     height: calc(100vh - 56px);
-    transform: translateY(-100%);
-    border-left: none;
-    border-top: 1px solid #252424;
+    transform: translateX(100%);
+    border-left: 1px solid #252424;
+    border-top: none;
+    box-shadow: -2px 0 10px rgba(0, 0, 0, 0.3);
   }
 
   .hamburger-nav.mobile-open {
-    transform: translateY(0);
+    transform: translateX(0);
   }
 
   .hamburger-nav ul {
-    padding: 40px 0 40px 0;
-    text-align: center;
+    padding: 40px 0 20px 0;
+    text-align: left;
   }
 
   .hamburger-nav li {
-    margin: 10px 0;
+    margin: 0;
   }
 
   .hamburger-nav a {
-    font-size: 16px;
+    font-size: 14px;
     padding: 16px 20px;
-    margin: 0 40px;
-    justify-content: center;
-  }
-
-  .hamburger-backdrop {
-    top: 56px;
-    height: calc(100vh - 56px);
+    margin: 0 20px;
+    justify-content: flex-start;
+    display: flex;
+    align-items: center;
   }
 }
 
@@ -396,12 +470,13 @@ export default {
     display: none;
   }
 
-  /* Mobile: Hide desktop-only items, show all mobile items */
-  .hamburger-nav .desktop-only {
+  /* Mobile: Hide desktop and tablet items, show all mobile items */
+  .hamburger-nav .desktop-only,
+  .hamburger-nav .tablet-only {
     display: none;
   }
 
-  .hamburger-nav .mobile-item {
+  .hamburger-nav .mobile-only {
     display: block !important;
   }
 
@@ -461,12 +536,13 @@ export default {
     display: none;
   }
 
-  /* Mobile: Hide desktop-only items, show all mobile items */
-  .hamburger-nav .desktop-only {
+  /* Mobile: Hide desktop and tablet items, show all mobile items */
+  .hamburger-nav .desktop-only,
+  .hamburger-nav .tablet-only {
     display: none;
   }
 
-  .hamburger-nav .mobile-item {
+  .hamburger-nav .mobile-only {
     display: block !important;
   }
 
@@ -520,8 +596,13 @@ export default {
     padding: 10px 12px;
   }
 
-  /* Ensure mobile items are visible on extra small screens */
-  .hamburger-nav .mobile-item {
+  /* Ensure only mobile items are visible on extra small screens */
+  .hamburger-nav .desktop-only,
+  .hamburger-nav .tablet-only {
+    display: none !important;
+  }
+  
+  .hamburger-nav .mobile-only {
     display: block !important;
   }
 }
