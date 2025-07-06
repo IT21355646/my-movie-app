@@ -25,7 +25,7 @@ export default {
   padding: 10px 10px;
   text-align: center;
   font-size: 1.0em;
-  border-top: 1px solid #413d3d; /* Small separator from content above */
+  border-top: 1px solid #413d3d; /* separator */
   width: 100vw;
   max-width: none;
   margin-left: calc(-50vw + 50%);
@@ -46,9 +46,9 @@ export default {
 
 .footer-section {
   padding: 2px;
-  flex-basis: 45%; /* Increase basis to give more space */
-  min-width: 200px; /* Reduce minimum width */
-  white-space: nowrap; /* Prevent text wrapping */
+  flex-basis: 45%;
+  min-width: 200px; 
+  white-space: nowrap; 
 }
 
 .footer-section.copyright {
@@ -72,14 +72,14 @@ export default {
 .social-icons {
   display: flex;
   justify-content: center;
-  gap: 15px; /* Space between icons */
+  gap: 15px; 
 }
 
 .social-icon {
   color: #ccc;
-  font-size: 1.5em; /* Adjust icon size */
+  font-size: 1.5em;
   transition: color 0.3s ease;
-  text-decoration: none; /* Remove underline from links */
+  text-decoration: none;
   /* Basic styling for placeholder text icons */
   border: 1px solid #ccc;
   border-radius: 50%;
@@ -92,7 +92,7 @@ export default {
 }
 
 .social-icon:hover {
-  color: #F0C000; /* Accent color on hover */
+  color: #F0C000; 
   border-color: #F0C000;
 }
 

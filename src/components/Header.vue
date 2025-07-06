@@ -20,12 +20,12 @@
     <div class="hamburger-backdrop" :class="{ 'active': isMobileMenuOpen }" @click="toggleMobileMenu"></div>
     <nav class="hamburger-nav" :class="{ 'mobile-open': isMobileMenuOpen }">
       <ul>
-        <!-- Desktop: Only GALLERY -->
+        <!-- Desktop view -->
         <li class="desktop-only"><a href="#">GALLERY</a></li>
-        <!-- Tablet: LOCATION & CONTACT and GALLERY -->
+        <!-- Tablet view -->
         <li class="tablet-only"><a href="#">LOCATION & CONTACT</a></li>
         <li class="tablet-only"><a href="#">GALLERY</a></li>
-        <!-- Mobile: All items -->
+        <!-- Mobile view -->
         <li class="mobile-only"><a href="#">HOME</a></li>
         <li class="mobile-only"><a href="#">OUR SCREENS</a></li>
         <li class="mobile-only"><a href="#">SCHEDULE</a></li>
@@ -53,7 +53,7 @@ export default {
     }
   },
   mounted() {
-    // Add event listener to close mobile menu on resize to desktop size
+    // Event listener to close mobile menu on resize to desktop size
     window.addEventListener('resize', this.handleResize);
   },
   beforeUnmount() {
@@ -67,7 +67,7 @@ export default {
       document.body.style.overflow = this.isMobileMenuOpen ? 'hidden' : '';
     },
     handleResize() {
-      // Close mobile menu if window is resized to desktop width (e.g., > 768px)
+      // Close mobile menu if window is resized to desktop width
       if (window.innerWidth > 768 && this.isMobileMenuOpen) {
         this.isMobileMenuOpen = false;
         document.body.style.overflow = ''; // Re-enable scrolling
@@ -113,7 +113,7 @@ export default {
   margin-right: 20px;
 }
 
-/* Desktop Navigation (default) */
+/* Desktop Navigation */
 .main-nav {
   margin-right: 15px;
 }
@@ -254,7 +254,7 @@ export default {
   text-decoration: none;
 }
 
-/* Desktop: Show only GALLERY in hamburger */
+/* Desktop hamburger */
 .hamburger-nav .desktop-only {
   display: block;
 }
@@ -264,7 +264,7 @@ export default {
   display: none;
 }
 
-/* Hide LOCATION & CONTACT from main nav on smaller screens */
+/* Smaller screens */
 .main-nav .tablet-hide {
   display: block;
 }
@@ -292,7 +292,7 @@ export default {
     font-size: 14px;
   }
   
-  /* Desktop: Only show GALLERY in hamburger */
+  /* Desktop hamburger */
   .hamburger-nav .desktop-only {
     display: block;
   }
@@ -318,12 +318,12 @@ export default {
     margin-left: 25px;
   }
   
-  /* Hide LOCATION & CONTACT from main nav on larger tablets */
+  /* Main nav on larger tablets */
   .main-nav .tablet-hide {
     display: none !important;
   }
   
-  /* Show LOCATION & CONTACT and GALLERY in hamburger menu on larger tablets */
+  /* Hamburger menu on larger tablets */
   .hamburger-nav .desktop-only {
     display: none !important;
   }
@@ -398,12 +398,12 @@ export default {
     font-size: 12px;
   }
 
-  /* Keep first 4 items in main nav, hide LOCATION & CONTACT */
+  /* Keep first 4 items in main nav */
   .main-nav .tablet-hide {
     display: none !important;
   }
 
-  /* Show only LOCATION & CONTACT and GALLERY in hamburger menu on tablet */
+  /* hamburger menu on tablet */
   .hamburger-nav .desktop-only {
     display: none !important;
   }
@@ -470,7 +470,7 @@ export default {
     display: none;
   }
 
-  /* Mobile: Hide desktop and tablet items, show all mobile items */
+  /* Mobile hamburger */
   .hamburger-nav .desktop-only,
   .hamburger-nav .tablet-only {
     display: none;
@@ -536,7 +536,7 @@ export default {
     display: none;
   }
 
-  /* Mobile: Hide desktop and tablet items, show all mobile items */
+  /* Mobile nav */
   .hamburger-nav .desktop-only,
   .hamburger-nav .tablet-only {
     display: none;
@@ -596,7 +596,7 @@ export default {
     padding: 10px 12px;
   }
 
-  /* Ensure only mobile items are visible on extra small screens */
+  /* Extra small screens */
   .hamburger-nav .desktop-only,
   .hamburger-nav .tablet-only {
     display: none !important;

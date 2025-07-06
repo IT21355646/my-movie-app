@@ -19,7 +19,7 @@ body {
   overflow-x: hidden;
 }
 
-/* Specific tablet fixes */
+/* Tablet screen size fixing */
 @media (max-width: 991px) and (min-width: 769px) {
   body {
     margin: 0 !important;

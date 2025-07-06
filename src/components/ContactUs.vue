@@ -6,6 +6,8 @@
     </p>
 
     <div class="contact-content-wrapper">
+
+      <!-- Contact form -->
       <div class="contact-form-container">
         <form @submit.prevent="handleSubmit" class="contact-form">
           <div class="form-group">
@@ -39,6 +41,7 @@
         </form>
       </div>
 
+      <!-- Map -->
       <div class="map-and-info-container">
         <div class="map-placeholder">
           <iframe
@@ -127,11 +130,10 @@ export default {
 
     const handleSubmit = () => {
       // Placeholder for form submission logic
-      // In a real application, you would send this data to a backend API
       if (form.value.termsAgreed && form.value.firstName && form.value.lastName && form.value.email) {
         console.log('Form Submitted:', form.value);
         alert('Thank you for your message! (Check console for data)');
-        // Optionally reset form
+        // Reset form
         form.value = {
           firstName: '',
           lastName: '',
@@ -183,7 +185,7 @@ export default {
 }
 
 .section-title {
-  font-size: 2.5em; /* Adjust as per design */
+  font-size: 2.5em;
   margin-bottom: 5px;
   font-weight: bold;
 }
@@ -197,28 +199,28 @@ export default {
 
 .contact-content-wrapper {
   display: flex;
-  flex-wrap: wrap; /* Allows wrapping for responsiveness */
-  gap: 80px; /* Increased from 30px to make larger gap */
+  flex-wrap: wrap;
+  gap: 80px;
   justify-content: center;
-  align-items: flex-start; /* Align items to the top */
+  align-items: flex-start;
 }
 
 .contact-form-container {
   flex: 1;
   min-width: 300px;
-  max-width: 500px; /* Added max-width to make form smaller */
-  text-align: left; /* Align form labels/inputs left */
+  max-width: 500px;
+  text-align: left;
 }
 
 .form-group {
   margin-bottom: 15px;
-  width: calc(50% - 10px); /* Reduced spacing between columns */
+  width: calc(50% - 10px);
   display: inline-block;
-  vertical-align: top; /* Align top for multi-column inputs */
+  vertical-align: top;
 }
 
 .form-group:nth-child(odd) {
-  margin-right: 20px; /* Increased spacing between columns */
+  margin-right: 20px;
 }
 
 .form-group.full-width {
@@ -245,7 +247,7 @@ export default {
   background-color: #3c3c3c;
   color: #fff;
   font-size: 1em;
-  box-sizing: border-box; /* Include padding in width */
+  box-sizing: border-box;
 }
 
 .form-group input::placeholder,
@@ -255,7 +257,7 @@ export default {
 
 .form-group textarea {
   min-height: 100px;
-  resize: vertical; /* Allow vertical resizing */
+  resize: vertical;
 }
 
 .checkbox-group {
@@ -322,7 +324,7 @@ export default {
 .submit-button {
   background-color: #F0C000;
   color: #fff;
-  padding: 12px 40px; /* Increased padding for longer button */
+  padding: 12px 40px;
   border: none;
   border-radius: 5px;
   font-size: 1.1em;
@@ -330,7 +332,7 @@ export default {
   cursor: pointer;
   transition: background-color 0.3s ease;
   width: auto;
-  min-width: 180px; /* Increased min-width */
+  min-width: 180px;
   display: block;
   margin: 0 0 0 auto;
 }
@@ -341,10 +343,10 @@ export default {
 
 .map-and-info-container {
   flex: 1;
-  min-width: 300px; /* Minimum width before wrapping */
+  min-width: 300px;
   display: flex;
   flex-direction: column;
-  gap: 30px; /* Space between map and address info */
+  gap: 30px; 
 }
 
 .map-placeholder iframe {
@@ -514,7 +516,7 @@ export default {
   background-color: #e0b000;
 }
 
-/* Enhanced Responsive adjustments */
+/* Responsive styles */
 @media (max-width: 992px) {
   .contact-section {
     padding: 50px 40px;
@@ -550,7 +552,7 @@ export default {
   
   .contact-content-wrapper {
     flex-direction: column;
-    align-items: stretch; /* Changed from center to stretch */
+    align-items: stretch; 
     gap: 40px;
   }
 
@@ -558,7 +560,7 @@ export default {
   .map-and-info-container {
     width: 100%;
     max-width: 100%;
-    flex: none; /* Remove flex sizing */
+    flex: none; 
   }
 
   .form-group {
@@ -599,13 +601,13 @@ export default {
     margin-bottom: 10px;
   }
 
-  /* Enhanced form inputs for mobile */
+  /* form inputs for mobile */
   .form-group input[type="text"],
   .form-group input[type="email"],
   .form-group input[type="tel"],
   .form-group textarea {
     padding: 15px;
-    font-size: 16px; /* Prevents zoom on iOS */
+    font-size: 16px;
     border-radius: 8px;
   }
 
@@ -617,7 +619,7 @@ export default {
     margin: 10px auto 0 auto;
   }
 
-  /* Enhanced checkbox for mobile */
+  /* Checkbox for mobile */
   .checkbox-group input[type="checkbox"] {
     width: 24px;
     height: 24px;
@@ -629,7 +631,7 @@ export default {
     line-height: 1.4;
   }
 
-  /* Enhanced modal for tablets */
+  /* Modal for tablets */
   .modal-content {
     width: 95%;
     max-height: 90vh;
@@ -718,7 +720,7 @@ export default {
     height: 28px;
   }
 
-  /* Enhanced modal for mobile */
+  /* Modal for mobile */
   .modal-content {
     width: 98%;
     max-height: 95vh;
@@ -791,7 +793,7 @@ export default {
 /* Touch device optimizations */
 @media (hover: none) and (pointer: coarse) {
   .submit-button {
-    min-height: 48px; /* Better touch target */
+    min-height: 48px; 
   }
 
   .checkbox-group input[type="checkbox"] {
@@ -800,7 +802,7 @@ export default {
   }
 
   .terms-link {
-    padding: 2px 0; /* Better touch target */
+    padding: 2px 0; 
   }
 
   .social-icon {

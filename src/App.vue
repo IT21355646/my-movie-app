@@ -25,16 +25,16 @@ export default {
     AppIntroduction,
     AppMovieGrid,
     AppContactUs,
-    AppFooter, // Ensure this is the last component and does not have a trailing comma if no other components follow
+    AppFooter,
   },
 };
 </script>
 
 <style>
-/* Global styles (e.g., body, font-family) */
+/* Global styles */
 body {
   margin: 0;
-  font-family: Arial, sans-serif; /* Example font */
+  font-family: Arial, sans-serif; 
   background-color: #121212; /* Dark background for the whole app */
   color: #fff;
   

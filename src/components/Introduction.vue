@@ -44,22 +44,22 @@ export default {
 }
 
 .section-title {
-  font-size: 3em; /* Increased from 2.5em */
+  font-size: 3em;
   margin: 0 0 10px 0;
   padding: 0;
   font-weight: normal;
   text-transform: uppercase;
-  line-height: 1.4; /* Increased line height for taller letters */
-  font-family: 'Trebuchet MS', 'Lucida Grande', Arial, sans-serif; /* Font with taller letter forms but not bold */
-  letter-spacing: 0.05em; /* Slight letter spacing for better readability */
-  font-stretch: expanded; /* Makes letters taller/wider without bold */
+  line-height: 1.4;
+  font-family: 'Trebuchet MS', 'Lucida Grande', Arial, sans-serif; 
+  letter-spacing: 0.05em; 
+  font-stretch: expanded; 
 }
 
 .intro-text {
-  font-size: 1.4em; /* Increased from 1.2em */
+  font-size: 1.4em; 
   line-height: 1.3;
   color: #b4b4b4;
-  max-width: 50%; /* Limit to 50% of page width */
+  max-width: 50%;
   margin: 0;
   padding: 0;
 }
